@@ -39,7 +39,7 @@ public class BankAccount {
     public void showInfo() {
         System.out.println("\nAccount Number: " + accountNumber);
         System.out.println("Owner: " + owner);
-        System.out.println("Balance: " + balance);
+        System.out.printf("Balance: $%.2f\n", balance);
     }
 
     // Methods for changing account balance

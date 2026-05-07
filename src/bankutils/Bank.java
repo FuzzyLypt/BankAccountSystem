@@ -16,7 +16,6 @@ public class Bank {
     // Methods related to the accounts
     public void addAccount(BankAccount account) {
         this.accounts.add(account);
-        System.out.println("\nAccount added!");
     }
 
     public void listAccounts() {
@@ -30,17 +29,23 @@ public class Bank {
         }
     }
 
-    public void searchAccount(String accountNumber) {
-        for (BankAccount account : accounts) {
-            if (account.getAccountNumber().equals(accountNumber)) {
-                System.out.println("Account found!");
-                account.showInfo();
+    public BankAccount searchAccount(String accountNumber) {
+        if (!accounts.isEmpty()) {
+            for (BankAccount account : accounts) {
+                if (account.getAccountNumber().equals(accountNumber)) {
+                    System.out.println("\nAccount found!");
+                    account.showInfo();
+                    return account;
+                }
             }
         }
+        System.out.println("\nAccount not found!");
+        return null;
     }
 
-    public void deleteAccount(String accountNumber) {
-        accounts.removeIf(account -> account.getAccountNumber().equals(accountNumber));
+    public void deleteAccount(BankAccount account) {
+        accounts.remove(account);
+        System.out.println("\nAccount deleted!");
     }
 
 }
