@@ -1,6 +1,6 @@
 # 🏦 Bank Account System
 
-A Java practice project simulating a basic banking system. It models a `Bank` object that holds multiple accounts, each with their own attributes, and supports core operations like deposits, withdrawals, and overdraft/error handling.
+This is a small Java practice project simulating a basic banking system. It models a `Bank` object that can hold multiple accounts, each with their own attributes, and supports core operations like deposits, withdrawals, transfers, and overdraft/error handling.
 
 ---
 
@@ -8,6 +8,8 @@ A Java practice project simulating a basic banking system. It models a `Bank` ob
 
 - Create and manage multiple bank accounts within a single bank instance
 - Deposit and withdraw funds from individual accounts
+- Transfer funds from one account to another
+- Choose between types of accounts (Only Checking and Saving for now)
 - Overdraft and error handling to prevent invalid operations
 
 ---
