@@ -9,6 +9,7 @@ public class Main {
     static Scanner scanner = new Scanner(System.in);
 
     static String bankNumberValidator() {
+        // All bank numbers must have a format
         String bankNumber;
         boolean validNumber = false;
         do {
@@ -24,6 +25,7 @@ public class Main {
     }
 
     static boolean bankNumberDuplicateFinder (List<BankAccount> bankAccounts, String bankNumber) {
+        // No duplicated bank numbers, bank numbers serve as an unique identifier for each account
         boolean duplicate = false;
         for (BankAccount bankAccount : bankAccounts) {
             if (bankAccount.getAccountNumber().equals(bankNumber)) {
@@ -34,9 +36,34 @@ public class Main {
         if (duplicate) {
             System.out.println("An account with this number already exists!");
             return false;
-        } else {
+        }
+        else {
             return true;
         }
+    }
+
+    static int typeValidator() {
+        boolean validationCheck = false;
+        int type;
+        do {
+            System.out.println("""
+                    \nWhat is the type of this account?
+                    
+                    1 - Checking account
+                    2 - Saving account
+                    """);
+            type = scanner.nextInt();
+
+            switch (type) {
+                case 1, 2:
+                    validationCheck = true;
+                    break;
+                default:
+                    System.out.println("\nInvalid type, please try again!");
+                    break;
+            }
+        } while (!validationCheck);
+        return type;
     }
 
     static List<BankAccount> createAccounts(List<BankAccount> existingBankAccounts) {
@@ -46,6 +73,7 @@ public class Main {
 
         char choice;
         do {
+            // This is used to find any duplicated numbers by both existent and created lists in the duplicate finder
             List<BankAccount> tempTotalAccounts = new ArrayList<>(existingBankAccounts);
             tempTotalAccounts.addAll(createdBankAccounts);
             String bankNumber;
@@ -61,7 +89,9 @@ public class Main {
             System.out.print("\nWhat is the starting balance of this account? ");
             double balance = scanner.nextDouble();
 
-            createdBankAccounts.add(new BankAccount(bankNumber, ownerName, balance));
+            int type = typeValidator();
+
+            createdBankAccounts.add(new BankAccount(bankNumber, ownerName, balance, type));
 
             System.out.print("\nDo you want to create another account? (Y/N) ");
             choice = scanner.next().charAt(0);
