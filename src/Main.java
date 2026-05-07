@@ -136,13 +136,15 @@ public class Main {
                 
                 2 - List accounts
                 
-                3 - Deposit money
+                3 - Deposit
                 
-                4 - Withdraw money
+                4 - Withdraw
                 
-                5 - Search for a specific account
+                5 - Transference
                 
-                6 - Delete an account
+                6 - Search for a specific account
+                
+                7 - Delete an account
                 
                 0 - Exit the program
                 """);
@@ -176,9 +178,21 @@ public class Main {
                 }
                     break;
                 case 5:
-                    searchAndValidateAccount(bank);
+                {
+                    System.out.println("\nEnter the bank number of the account to transfer from");
+                    BankAccount originAccount = searchAndValidateAccount(bank);
+
+                    System.out.println("\nEnter the bank number of the account to transfer to");
+                    BankAccount destinationAccount = searchAndValidateAccount(bank);
+
+                    System.out.print("\nEnter the amount you want to transfer: ");
+                    originAccount.transferFunds(scanner.nextDouble(), destinationAccount);
+                }
                     break;
                 case 6:
+                    searchAndValidateAccount(bank);
+                    break;
+                case 7:
                     bank.deleteAccount(searchAndValidateAccount(bank));
                     break;
                 case 0:

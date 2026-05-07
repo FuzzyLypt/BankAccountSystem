@@ -64,15 +64,26 @@ public class BankAccount {
     // Methods for changing account balance
     public void deposit(double amount) {
         this.balance += amount;
-        System.out.println("Deposited $" + amount);
+        System.out.println("\nDeposited $" + amount);
     }
 
     public void withdraw(double amount) {
         if (this.balance >= amount) {
             this.balance -= amount;
-            System.out.println("Withdrawn $" + amount);
+            System.out.println("\nWithdrawn $" + amount);
         }
         else  {
+            System.out.println("\nInsufficient funds!");
+        }
+    }
+
+    public void transferFunds(double amount, BankAccount destination) {
+        if (this.balance >= amount) {
+            this.balance -= amount;
+            destination.deposit(amount);
+            System.out.printf("\nTransferred $%.2f to %s\n", amount, destination.getOwner());
+        }
+        else {
             System.out.println("\nInsufficient funds!");
         }
     }
